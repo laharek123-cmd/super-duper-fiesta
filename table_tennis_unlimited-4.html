@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Table Tennis Unlimited</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#111;font-family:Arial,system-ui,sans-serif;color:#fff;display:flex;justify-content:center;min-height:100vh}
+.wrap{width:min(100%,1100px);padding:18px}
+h1{text-align:center;margin:5px 0 18px;font-size:28px}
+.names{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+input{width:100%;padding:13px 14px;border:0;border-radius:12px;font-size:18px;font-weight:700;text-align:center}
+.board{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-radius:24px;border:3px solid #222}
+.side{min-height:430px;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;user-select:none;touch-action:manipulation}
+.left{background:#e400d7}.right{background:#c7f000;color:#111}
+.name{font-size:clamp(20px,4vw,34px);font-weight:800;margin-bottom:18px}
+.score{font-size:clamp(100px,18vw,180px);line-height:.85;font-weight:900}
+.hint{margin-top:25px;font-size:14px;font-weight:700;opacity:.75}
+.controls{display:flex;justify-content:center;gap:12px;margin-top:15px}
+button{padding:13px 22px;border:0;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer}
+#reset{background:#fff;color:#111}
+@media(max-width:600px){.wrap{padding:10px}.side{min-height:330px}.names{gap:8px}input{font-size:16px}.board{border-radius:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🏓 Table Tennis Unlimited</h1>
+<div class="names">
+<input id="name1" value="Messi" maxlength="20" aria-label="Player 1 name">
+<input id="name2" value="Ronaldo" maxlength="20" aria-label="Player 2 name">
+</div>
+<div class="board">
+<div class="side left" id="p1">
+<div class="name" id="display1">Messi</div>
+<div class="score" id="score1">0</div>
+<div class="hint">TAP TO INCREASE</div>
+</div>
+<div class="side right" id="p2">
+<div class="name" id="display2">Ronaldo</div>
+<div class="score" id="score2">0</div>
+<div class="hint">TAP TO INCREASE</div>
+</div>
+</div>
+<div class="controls"><button id="reset">RESET GAME</button></div>
+</div>
+<script>
+let score1=0,score2=0;
+const n1=document.getElementById('name1'),n2=document.getElementById('name2');
+const d1=document.getElementById('display1'),d2=document.getElementById('display2');
+n1.addEventListener('input',()=>d1.textContent=n1.value.trim()||'PLAYER 1');
+n2.addEventListener('input',()=>d2.textContent=n2.value.trim()||'PLAYER 2');
+document.getElementById('p1').addEventListener('click',()=>{score1++;document.getElementById('score1').textContent=score1});
+document.getElementById('p2').addEventListener('click',()=>{score2++;document.getElementById('score2').textContent=score2});
+document.getElementById('reset').addEventListener('click',()=>{score1=0;score2=0;document.getElementById('score1').textContent='0';document.getElementById('score2').textContent='0'});
+</script>
+</body>
+</html>
